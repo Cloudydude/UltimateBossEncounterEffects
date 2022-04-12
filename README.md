@@ -19,3 +19,7 @@ Adds effects before a boss battle.
 [Alien Soldier](https://youtu.be/LA03WAjg6ic?t=1343)
 
 [Ikaruga](https://youtu.be/eelfcFaKEZ0?t=12)
+
+[Cuphead](https://discord.com/channels/647909581992755200/647920869166809157/963579392532054036)
+
+[Evangelion](https://discord.com/channels/647909581992755200/647920869166809157/963578913873887232)
