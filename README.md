@@ -2,7 +2,7 @@
 Adds effects before a boss battle.
 
 ###### Reference:
-[Sonic 3](https://discord.com/channels/647909581992755200/647920869166809157/963558142149533746) ✓
+[Sonic 3 (MiaPaisano)](https://discord.com/channels/647909581992755200/647920869166809157/963558142149533746) ✓
 
 [Sonic Megamix](https://youtu.be/bx4IPVMJ7xk?t=142) ✓
 
