@@ -1,7 +1,7 @@
 # UltimateBossEncounterEffects
 Adds effects before a boss battle.
 
-Reference:
+###### Reference:
 [Sonic Megamix](https://youtu.be/bx4IPVMJ7xk?t=142)
 
 [Sonic Megamix Mania](https://youtu.be/7sq_C4tdpt4?t=230)
