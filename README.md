@@ -22,4 +22,8 @@ Adds effects before a boss battle.
 
 [Cuphead](https://discord.com/channels/647909581992755200/647920869166809157/963579392532054036)
 
+[Devil Engine](https://youtu.be/_n8Il5xfHqY?t=10)
+
 [Evangelion](https://discord.com/channels/647909581992755200/647920869166809157/963578913873887232)
+
+Custom (Template)
