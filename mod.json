@@ -1,0 +1,33 @@
+{
+	"Metadata":
+	{
+		"Name": "Ultimate Boss Encounter Effects",
+		"Author": "Bluesteak & iCloudius",
+		"Description": "DESC GOES HERE",
+		"ModVersion": "1.0",
+		"GameVersion": "20.07.24.0"
+	},
+	"Settings":
+	{
+		"Settings":
+		[
+			{
+				"InternalName": "BS.BossEffect",
+				"DisplayName": "Encounter Effect",
+				"Variable": "BS.BossEffect",
+				"DefaultValue": "0x0",
+				"Options":
+				{
+					"0x0": "Sonic Megamix",
+					"0x1": "Sonic Megamix Mania",
+					"0x2": "S&K Newtrogic Panic (Demo 4)",
+					"0x3": "Freedom Planet",
+					"0x4": "Freedom Planet 2",
+					"0x5": "Gunstar Heroes",
+					"0x6": "Alien Soldier",
+					"0x7": "Ikaruga",
+				}
+			}
+		]
+	}
+}

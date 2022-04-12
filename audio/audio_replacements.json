@@ -1,0 +1,5 @@
+{
+	"newtrogic_warning":  { "File": "WarningFlare.ogg", "Type": "Sound" },
+	"megamix_boss_time":  { "File": "BossTime.ogg", "Type": "Sound" },
+	"megamix_boss_time_flash":  { "File": "BossTimeFlash.ogg", "Type": "Sound" },
+}

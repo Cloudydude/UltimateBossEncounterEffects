@@ -1,0 +1,22 @@
+{
+	"BossEffectsLockOn":  { "File": "BossEffectsLockOn.png", "Rect": "0,0,1,1", "Center": "1,1" },
+	"MegamixBossTime0":  { "File": "MegamixBossTime.png", "Rect": "0,0,271,15", "Center": "135,15" },
+	"MegamixBossTime1":  { "File": "MegamixBossTime.png", "Rect": "0,15,271,15", "Center": "-265,0" },
+	"MegamixManiaBossTime0":  { "File": "MegamixManiaBossTime.bmp", "Rect": "0,0,271,30", "Center": "135,15" },
+	"MegamixManiaBossTime1":  { "File": "MegamixManiaBossTime.bmp", "Rect": "0,31,339,23", "Center": "169,10" },
+	"MegamixManiaBossTime2":  { "File": "MegamixManiaBossTime.bmp", "Rect": "0,55,405,15", "Center": "202,7" },
+	"MegamixManiaBossTime3":  { "File": "MegamixManiaBossTime.bmp", "Rect": "0,71,474,8", "Center": "237,4" },
+	"MegamixManiaBossTime4":  { "File": "MegamixManiaBossTime.bmp", "Rect": "0,80,542,4", "Center": "271,2" },
+	"NewtrogicWarning0":  { "File": "NewtrogicWarning.png", "Rect": "0,0,80,55", "Center": "40,43" },
+	"NewtrogicWarning1":  { "File": "NewtrogicWarning.png", "Rect": "27,0,1,1", "Center": "40,43" },
+	"NewtrogicWarning2":  { "File": "NewtrogicWarning.png", "Rect": "0,0,80,55", "Center": "41,44" },
+	"NewtrogicWarning3":  { "File": "NewtrogicWarning.png", "Rect": "27,0,1,1", "Center": "40,43" },
+	"NewtrogicWarning4":  { "File": "NewtrogicWarning.png", "Rect": "0,0,80,55", "Center": "39,43" },
+	"NewtrogicWarning5":  { "File": "NewtrogicWarning.png", "Rect": "27,0,1,1", "Center": "40,43" },
+	"NewtrogicWarning6":  { "File": "NewtrogicWarning.png", "Rect": "0,0,80,55", "Center": "40,41" },
+	"NewtrogicWarning7":  { "File": "NewtrogicWarning.png", "Rect": "27,0,1,1", "Center": "40,43" },
+	"FreedomPlanetWarning0":  { "File": "FreedomPlanetWarning.png", "Rect": "0,0,76,11", "Center": "38,43" },
+	"FreedomPlanetWarning1":  { "File": "FreedomPlanetWarning.png", "Rect": "20,0,1,1", "Center": "38,43" },
+	"WhiteFlash":  { "File": "WhiteFlash.png", "Rect": "0,0,400,224", "Center": "200,112" },
+	"BlackFlash":  { "File": "BlackFlash.png", "Rect": "0,0,400,224", "Center": "200,112" }
+}

@@ -1,0 +1,231 @@
+global u8 BS.BossEffect
+
+global u8 BS.BossEffectEnabled
+
+global u16 BS.BossTimeCounter
+
+global u8 BS.BossEffectMegamixXValue
+
+global u8 BS.BossEffectMegamixFlashTimer
+
+global u32 BS.BossEffectMegamixManiaScale
+
+global u8 BS.BossEffectMegamixManiaSpriteID
+
+function void MegamixBossTime()
+{
+	if (global.zone_act != 0x0600)
+		playMusic(MUSIC_CTRL_FADEOUT)
+
+	Audio.playAudio("megamix_boss_time", AudioContext.CONTEXT_SOUND)
+	BS.BossTimeCounter = 130
+
+	BS.BossEffectMegamixXValue = 0
+	BS.BossEffectMegamixFlashTimer = 0
+}
+
+function void MegamixManiaBossTime()
+{
+	if (global.zone_act != 0x0600)
+		playMusic(MUSIC_CTRL_FADEOUT)
+
+	Audio.playAudio("megamix_boss_time", AudioContext.CONTEXT_SOUND)
+	BS.BossTimeCounter = 200
+
+	BS.BossEffectMegamixManiaScale = 0xfffff
+	BS.BossEffectMegamixManiaSpriteID = 0
+}
+
+function void NewtrogicPanicWarning()
+{
+	if (global.zone_act != 0x0600)
+		playMusic(MUSIC_CTRL_STOP)
+
+	playSound(0x96)
+	Audio.playAudio("newtrogic_warning", AudioContext.CONTEXT_SOUND)
+	BS.BossTimeCounter = 225
+}
+
+function void FreedomPlanetWarning()
+{
+	if (global.zone_act != 0x0600)
+		playMusic(MUSIC_CTRL_FADEOUT)
+
+	BS.BossTimeCounter = 175
+}
+
+function void ChooseBossEffect()
+{
+	if (level.boss_encounter != 0) && (BS.BossEffectEnabled == 1)
+	{
+		if (BS.BossEffect == 0)
+			MegamixBossTime()
+		else if (BS.BossEffect == 1)
+			MegamixManiaBossTime()
+		else if (BS.BossEffect == 2)
+			NewtrogicPanicWarning()
+		else if (BS.BossEffect == 3)
+			FreedomPlanetWarning()
+	}
+}
+
+function void DrawBossEffect()
+{
+	u64 megamixmania = ""
+	megamixmania = stringformat("MegamixManiaBossTime%d", BS.BossEffectMegamixManiaSpriteID)
+
+	u64 newtrogic = ""
+	newtrogic = stringformat("NewtrogicWarning%d", (level.framecounter >> 1) % 8)
+
+	u64 freedom = ""
+	freedom = stringformat("FreedomPlanetWarning%d", (level.framecounter >> 3) % 2)
+
+	if (BS.BossEffect == 0)
+	{
+		Renderer.drawCustomSprite("MegamixBossTime0", 0 + BS.BossEffectMegamixXValue * 8, getScreenHeight() / 2 - 32, 0, SPRITE_FLAG_PRIO, 0xe000, 0, 255)
+		Renderer.drawCustomSprite("MegamixBossTime1", 0 - BS.BossEffectMegamixXValue * 8, getScreenHeight() / 2 - 32, 0, SPRITE_FLAG_PRIO, 0xe000, 0, 255)
+	}
+	else if (BS.BossEffect == 1)
+		Renderer.drawCustomSprite(megamixmania, getScreenWidth() / 2, getScreenHeight() / 2 - 32, 0, SPRITE_FLAG_PRIO, 0xb000, 0, 0xcffffffffff, BS.BossEffectMegamixManiaScale) // 0xffff
+	else if (BS.BossEffect == 2)
+		Renderer.drawCustomSprite(newtrogic, getScreenWidth() / 2, getScreenHeight() / 2, 0, SPRITE_FLAG_PRIO, 0xe000, 0, 255)
+	else if (BS.BossEffect == 3)
+		Renderer.drawCustomSprite(freedom, getScreenWidth() / 2, getScreenHeight() / 2, 0, SPRITE_FLAG_PRIO, 0xe000, 0, 255)
+
+	--BS.BossTimeCounter
+
+	if (BS.BossTimeCounter >= 105) && (BS.BossEffect == 0)
+	{
+		++BS.BossEffectMegamixXValue
+	}
+
+	if (BS.BossTimeCounter == 1) && (BS.BossEffect == 0)
+	{
+		Audio.playAudio("megamix_boss_time_flash", AudioContext.CONTEXT_SOUND)
+		BS.BossEffectMegamixFlashTimer = 250
+	}
+
+	if (BS.BossTimeCounter == 1) && (global.zone != 0x0a) && (global.zone != 0x02)
+		BS.BossEffectEnabled = 0
+
+	if (BS.BossTimeCounter >= 175) && (BS.BossTimeCounter <= 150) && (BS.BossEffect == 1)
+		BS.BossEffectMegamixManiaScale = BS.BossEffectMegamixManiaScale - 0x2500
+	else if (BS.BossTimeCounter >= 124) && (BS.BossEffect == 1)
+		BS.BossEffectMegamixManiaScale = BS.BossEffectMegamixManiaScale - 0x3275
+
+	if (BS.BossTimeCounter == 25) && (BS.BossEffect == 1)
+		BS.BossEffectMegamixManiaSpriteID = 1
+	else if (BS.BossTimeCounter == 20) && (BS.BossEffect == 1)
+		BS.BossEffectMegamixManiaSpriteID = 2
+	else if (BS.BossTimeCounter == 15) && (BS.BossEffect == 1)
+		BS.BossEffectMegamixManiaSpriteID = 3
+	else if (BS.BossTimeCounter == 10) && (BS.BossEffect == 1)
+		BS.BossEffectMegamixManiaSpriteID = 4
+	else if (BS.BossTimeCounter == 5) && (BS.BossEffect == 1)
+		BS.BossEffectMegamixManiaSpriteID = 5
+}
+
+//# address-hook(0x085940) end(0x08594c)
+function void LoadPaletteLine1()
+{
+	// Loads palette colors 0x10 .. 0x1f
+	copyMemory(0xfffffc20, A1, 0x20)
+
+	ChooseBossEffect()
+}
+
+
+function void loadPaletteLine1(u32 sourceAddress)
+{
+	// Loads palette colors 0x10 .. 0x1f
+	copyMemory(0xfffffc20, sourceAddress, 0x20)
+
+	ChooseBossEffect()
+}
+
+//# address-hook(0x00db44) end(0x00dbb2)
+function void RenderHUD()
+{
+	if (BS.BossTimeCounter != 0)
+	{
+		DrawBossEffect()
+	}
+
+	if (BS.BossEffectMegamixFlashTimer >= 1)
+	{
+		BS.BossEffectMegamixFlashTimer = BS.BossEffectMegamixFlashTimer - 10
+		Renderer.drawCustomSprite("WhiteFlash", getScreenWidth() / 2, getScreenHeight() / 2, 0, SPRITE_FLAG_PRIO, 0xd000, 0, BS.BossEffectMegamixFlashTimer)
+		Renderer.drawCustomSprite("BlackFlash", getScreenWidth() / 2, getScreenHeight() / 2, 0, SPRITE_FLAG_PRIO, 0xd000, 0, BS.BossEffectMegamixFlashTimer)
+	}
+
+	base.RenderHUD()
+}
+
+//# address-hook(0x02d6a6) end(0x02d768)
+function void TitleCard.Init()
+{
+	BS.BossEffectEnabled = 1
+	BS.BossTimeCounter = 0
+	BS.BossEffectMegamixXValue = 0
+	BS.BossEffectMegamixFlashTimer = 0
+
+	base.TitleCard.Init()
+}
+
+//# address-hook(0x083f52) end(0x083f70)
+function void fn083f52()
+{
+	BS.BossTimeCounter = 0
+	BS.BossEffectMegamixXValue = 0
+	BS.BossEffectMegamixFlashTimer = 0
+
+	base.fn083f52()
+}
+
+//# address-hook(0x0885a4) end(0x088600)
+function void fn0885a4()
+{
+	level.boss_encounter = 1
+	ChooseBossEffect()
+	base.fn0885a4()
+}
+
+//# address-hook(0x076a12) end(0x076a84)
+function void fn076a12()
+{
+	level.boss_encounter = 1
+	ChooseBossEffect()
+	base.fn076a12()
+}
+
+//# address-hook(0x0776ea) end(0x07770e)
+function void fn0776ea()
+{
+	A1 = 0xffffb000
+	CheckDistanceToObjectA1()
+	if (D2.u16 < 0xc0)
+	{
+		objA0.base_state = 0x04
+		objA0.countdown_value = 0x3b
+		level.boss_encounter = 1
+		ChooseBossEffect()
+	}
+}
+
+//# address-hook(0x07b2dc) end(0x07b3a6)
+function void fn07b2dc()
+{
+	if (global.act == 0)
+	{
+		level.boss_encounter = 1
+		ChooseBossEffect()
+	}
+	base.fn07b2dc()
+}
+
+//# address-hook(0x0500d6) end(0x0500d6)
+function void fn0500d6()
+{
+	BS.BossEffectEnabled = 1
+	base.fn0500d6()
+}
