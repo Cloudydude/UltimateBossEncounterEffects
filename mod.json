@@ -18,14 +18,19 @@
 				"DefaultValue": "0x0",
 				"Options":
 				{
-					"0x0": "Sonic Megamix",
-					"0x1": "Sonic Megamix Mania",
-					"0x2": "S&K Newtrogic Panic (Demo 4)",
-					"0x3": "Freedom Planet",
-					"0x4": "Freedom Planet 2",
-					"0x5": "Gunstar Heroes",
-					"0x6": "Alien Soldier",
-					"0x7": "Ikaruga",
+					"0x0": "Sonic 3",
+					"0x1": "Sonic Megamix",
+					"0x2": "Sonic Megamix Mania",
+					"0x3": "S&K Newtrogic Panic (Demo 4)",
+					"0x4": "Freedom Planet",
+					"0x5": "Freedom Planet 2",
+					"0x6": "Gunstar Heroes",
+					"0x7": "Alien Soldier",
+					"0x8": "Ikaruga",
+					"0x9": "Cuphead",
+					"0xa": "Devil Engine",
+					"0xb": "Evangelion",
+					"0xc": "Custom",
 				}
 			}
 		]
